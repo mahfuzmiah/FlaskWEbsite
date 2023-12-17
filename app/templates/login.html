@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+  <!-- {% if messages %}
+    <ul class="flashed-messages">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %} -->
+{% endwith %}
+
+<body>
+    <h1>Login</h1>
+    <form action="" method="post" name="loginForm" class="form">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=20) }}  
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+        </p>
+        <p><input type="submit" value="Login" class="btn submit">
+        <a href="/create_account" class="btn submit">Register</a> </p>
+
+    </form>
+</body>
+
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flashed-messages">
+      {% for message in messages %}
+        <div class="alert alert-info">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<body>
+  <h1>Create Post</h1>
+  <form action="" method="post" name="postForm" class="form">
+      {{ form.hidden_tag() }}
+      <div class="form-group">
+          {{ form.body.label }}<br>
+          {{ form.body(size=40, class='form-control', id='post_textarea', maxlength = '500') }}
+          <div id="char_count">500/500</div>
+          {% if form.body.errors %}
+              <div class="alert alert-danger">
+                  {% for error in form.body.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+              </div>
+          {% endif %}
+      </div>
+      <div class="form-group">
+          <input type="submit" value="Create Post" class="btn btn-primary">
+      </div>
+  </form>
+</body>
+
+
+{% endblock %}

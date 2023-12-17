@@ -1,0 +1,150 @@
+/* .profilepic {
+    width: 130px;
+    height: 195px;
+    background: url("{{ url_for('static', filename='Profilepic.png') }}") no-repeat;
+    display: inline-block;
+}
+.profilepic:hover {
+    background: url("{{ url_for('static', filename='Profilepichover.png') }}") no-repeat;
+} */
+
+.main-content {
+    padding-bottom: 200px;
+}
+
+.image_on {
+    display: none; 
+    /* height: 30px; 
+    width: 30px; 
+    border-radius: 50%; */
+}
+
+.image_off {
+    display: block;
+    /* height: 30px; 
+    width: 30px; 
+    border-radius: 50%; */
+}
+
+/* When hovering over the link, switch the images */
+.nav-link:hover .image_on {
+    display: block;
+}
+
+.nav-link:hover .image_off {
+    display: none;
+}
+
+.logout {
+    color: #fff; 
+    background-color: rgb(66, 66, 66); 
+    border: 2px solid black; 
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; 
+
+}
+
+
+.logout:hover {
+    color: rgb(66, 66, 66);    
+    background-color: #fff;   
+    border: 2px solid black; 
+
+}
+#char_count {
+    font-size: 14px;
+    color: #333;
+    margin-top: 5px;
+}
+
+.card {
+    min-width: 500px;
+    position: sticky;
+    display: flex;
+    border: 2px solid #000000; /* Example: 2px solid black border */
+
+}
+
+
+@media (max-width: 767px) {
+    .card {
+        min-width: 200px;  /* Narrower card for mobile screens */
+    }
+}
+
+.replies-container{
+    display: none;
+}
+
+#friends_posts {
+    display: none;
+}
+.card-reply{
+    border: 2px solid #000000; 
+
+}
+
+.heart-icon {
+    width: 30px; 
+    height: 30px; 
+    margin-left: 10px;
+  }
+
+.btn-delete {
+    background-color: #ff1100; /* Red color for delete*/
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 10px;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    opacity: 0.7;
+}
+
+.btn-delete:hover {
+    opacity: 1; /* Button becomes fully opaque on hover */
+}
+
+.card-footer {
+    justify-content: start; /* Align items to the start of the footer */
+    gap: 10px; /* Space between items */
+}
+
+ 
+
+.delete-post-form {
+    margin-left: auto ; /* Pushes the delete button to the right */
+}
+
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-pic {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.delete-post-form {
+    margin-left: 10px;
+}
+
+.header{
+    margin-left: 12px; 
+}
+
+.search-footer{
+
+           display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }

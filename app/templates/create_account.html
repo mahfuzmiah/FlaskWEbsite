@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+
+<!-- {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flashed-messages">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %} -->
+
+
+<body>
+
+    <h1>Create Account</h1>
+    <form action="" method="post" name="RegistrationForm" class="form">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=20) }}
+        </p>
+        <p>
+            {{ form.email.label }}<br>
+            {{ form.email(size=32) }} 
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }} 
+        </p>
+        <p>
+            {{ form.confirm_password.label }}<br>
+            {{ form.confirm_password(size=32) }} 
+            {% if form.confirm_password.errors %}
+            <ul class="errors">
+                {% for error in form.confirm_password.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %} 
+        </p>
+        <p><input type="submit" value="Sign Up" class="btn submit btn-outline-success"></p>
+    </form>
+    {% block navbar %}
+{% endblock %}
+</body>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+
+<form action="{{ url_for('search') }}" method="get">
+    <input type="text" name="q" placeholder="Search users...">
+    <button type="submit">Search</button>
+</form>
+{% if query %}
+    <h1>Search Results for "{{ query }}"</h1>
+    <div class="container mt-4">
+        <div class="row">
+            {% for user in results %}
+                <div class="col-md-12 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <small class="text-muted">
+                                <img src="{{ url_for('static', filename='Profile.svg') }}" alt="Profile Picture" class="profile-pic">
+                                <a href="{{ url_for('profile', username=user.username) }}" class="user-profile-link">
+                                    {{ user.username }}
+                                </a>
+                            </small>
+                        </div>
+                        <div class="card-body">
+                            <!-- You can add additional user details here if needed -->
+                            <p class="card-text">Profile of {{ user.username }}</p>
+                        </div>
+                        <div class="card-footer text-muted search-footer">
+                            <!-- Link to user's profile -->
+                            <a href="{{ url_for('profile', username=user.username) }}" class="btn btn-primary">View Profile</a>
+
+                            <!-- Follow/Unfollow button -->
+                            <form action="{{ url_for('follow_user', username=user.username) }}" method="POST">
+                                {% if current_user.is_following(user) %}
+                                    <button type="submit" class="btn btn-secondary">Unfollow</button>
+                                {% else %}
+                                    <button type="submit" class="btn btn-success">Follow</button>
+                                {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-md-12">
+                    <p>No users found.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}

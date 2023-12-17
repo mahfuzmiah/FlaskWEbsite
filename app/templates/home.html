@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+
+<!-- {% with messages = get_flashed_messages() %} -->
+  <!-- {% if messages %}
+    <ul class="flashed-messages">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %} -->
+<!-- {% endwith %} -->
+
+<body>
+    <h1 class="header">Home</h1>
+
+<!-- Displaying all posts -->
+<div class="post-selection header">
+    <button id="all-posts-btn">All Posts</button>
+    <button id="friends-posts-btn">Friends' Posts</button>
+</div>
+
+
+<section id="all_posts" class="posts-section">
+  <h2 class="header">All Posts</h2>
+  <div class="container mt-4">
+    <div class="row">
+      {% for post in all_posts %}
+      <div class="col-md-12 mb-4"> <!-- Each post takes up 4 columns in a 12-column grid -->
+        <div class="card">
+          <div class="card-header">
+            <small class="text-muted">
+              <img src="{{ url_for('static', filename='Profile.svg') }}" alt="Profile Picture" class="profile-pic">
+
+              <a href="{{ url_for('profile', username=post.author.username) }}" class="user-profile-link">
+                {{ post.author.username }}
+              </a>
+              {{ post.timestamp.strftime('%Y-%m-%d %H:%M') }}
+            </small>
+          </div>
+          <div class="card-body">
+            <p class="card-text">{{ post.body }}</p>
+          </div>
+          <button class="btn btn-secondary toggle-replies" data-post-id="{{ post.id }}">Show Replies</button>
+          <div class="replies-container" data-post-id="{{ post.id }}">
+              <!-- Replies will be loaded here -->
+          </div>
+    <div class="card-footer text-muted">
+        <a href="{{ url_for('reply', post_id=post.id) }}">Reply</a>
+        <img src="{{ url_for('static', filename='RedHeart.png') if post.is_liked_by_current_user else url_for('static', filename='BlackHeart.png') }}" 
+        alt="Heart" 
+        class="heart-icon" data-post-id="{{ post.id }}">
+        <span class="heart-count">{{ post.likes_count }} </span> 
+    </div>
+    
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="friends_posts" class="posts-section">
+  <h2 class="header">Friends Posts</h2>
+  <div class="container mt-4">
+    <div class="row">
+      {% for post in friend_posts %}
+      <div class="col-md-12 mb-4">
+        <div class="card">
+          <div class="card-header">
+            <small class="text-muted">
+              <!--https://fonts.google.com/icons-->
+              <img src="{{ url_for('static', filename='Profile.svg') }}" alt="Profile Picture" class="profile-pic">
+
+              <a href="{{ url_for('profile', username=post.author.username) }}" class="user-profile-link">
+                {{ post.author.username }}
+              </a>
+              {{ post.timestamp.strftime('%Y-%m-%d %H:%M') }}
+            </small>
+          </div>
+          <div class="card-body">
+            <p class="card-text">{{ post.body }}</p>
+          </div>
+          <button class="btn btn-secondary toggle-replies-friend" data-post-id="friend-{{ post.id }}">Show Replies</button>
+          <div class="friend-replies-container" data-post-id="friend-{{ post.id }}">
+              <!-- Replies will be loaded here -->
+          </div>
+          <div class="card-footer text-muted">
+            <a href="{{ url_for('reply', post_id=post.id) }}">Reply</a>
+            <img src="{{ url_for('static', filename='RedHeart.png') if post.is_liked_by_current_user else url_for('static', filename='BlackHeart.png') }}" 
+            alt="Heart" 
+            class="heart-icon" data-post-id="{{ post.id }}">
+            <span class="heart-count">{{ post.likes_count }} </span> 
+        </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+</body>
+
+{% endblock %}

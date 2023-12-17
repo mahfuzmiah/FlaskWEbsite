@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="original-post">
+    <h3>reply to {{ original_post.author.username }}</h3>
+    <div class="card">
+      <div class="card-text">
+          <p>{{ original_post.body }}</p></div>
+          </div>
+
+  </div>
+  <div class="reply-form">
+    <form action="{{ url_for('reply', post_id=original_post.id) }}" method="POST">
+      <textarea name="reply_body"></textarea>
+      <button type="submit">Submit Reply</button>
+    </form>
+  </div>
+{% endblock %}

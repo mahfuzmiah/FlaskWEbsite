@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Edit Post</h1>
+  <form action="{{ url_for('edit_post', post_id=post_id) }}" method="post">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.body.label }}
+      {{ form.body(class='form-control') }}
+    </div>
+    <button type="submit" class="btn btn-primary">Update Post</button>
+  </form>
+{% endblock %}

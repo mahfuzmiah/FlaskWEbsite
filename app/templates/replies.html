@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    {% if replies %}
+        <!-- Container for replies -->
+        <div class="container mt-4">
+            <div class="row">
+                {% for reply in replies %}
+                    <!-- Reply card -->
+                    <div class="col-md-10 mb-4">
+                        <div class="card-reply">
+                            <div class="card-header">
+                                <img src="{{ url_for('static', filename='Profile.svg') }}" alt="Profile Picture" class="profile-pic">
+
+                                <!-- Author and timestamp -->
+                                <small class="text-muted">
+                                    <a href="{{ url_for('profile', username=reply.author.username) }}" class="user-profile-link">
+                                        {{ reply.author.username }}
+                                    </a>
+                                    {{ reply.timestamp.strftime('%Y-%m-%d %H:%M') }}
+                                </small>
+                            </div>
+                            <div class="card-body">
+                                <!-- Reply text -->
+                                <p class="card-text">{{ reply.body }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <p>No replies to show.</p>
+    {% endif %}
+
+</body>
+</html>
